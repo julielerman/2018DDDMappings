@@ -4,12 +4,16 @@ using System.Linq;
 using SharedKernel;
 
 public class Team {
-  public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
+  public Team (string teamName, string nickname, string yearFounded, string homeStadium):this()
+   {
     TeamName = teamName;
     Nickname = nickname;
     YearFounded = yearFounded;
     HomeStadium = homeStadium;
     Id = Guid.NewGuid ();
+  }
+  private Team(){
+    Players=new List<Player>();
   }
   public Guid Id { get; private set; }
   public string TeamName { get; private set; }
@@ -20,7 +24,7 @@ public class Team {
   public void AddPlayer (string firstName, string lastname) {
       var fullName = PersonFullName.Create (firstName, lastname);
       var foundPlayer = Players.Where (p => p.Name.Equals (fullName)).FirstOrDefault ();
-      if (foundPlayer != null) {
+      if (foundPlayer == null) {
         Players.Add (new Player (firstName, lastname));
         }
       }
