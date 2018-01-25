@@ -73,12 +73,13 @@ namespace test {
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
             Assert.Equal (Color.White, team.HomeColors.ShirtPrimary);
         }
-          [Fact]
+
+        [Fact]
         public void CannotSetHomeColorsWhenAwayColorsAreSameAndNotForced () {
             var team = CreateTeamAjax ();
             team.SpecifyAwayUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-           var response=team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (response,false);
+            var response = team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
+            Assert.Equal (response, false);
         }
     }
 }
