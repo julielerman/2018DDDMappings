@@ -1,8 +1,0 @@
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/bin/Debug/netstandard2.0/sharedkernel.deps.json
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/bin/Debug/netstandard2.0/sharedkernel.dll
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/bin/Debug/netstandard2.0/sharedkernel.pdb
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/obj/Debug/netstandard2.0/sharedkernel.csproj.CoreCompileInputs.cache
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/obj/Debug/netstandard2.0/sharedkernel.AssemblyInfoInputs.cache
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/obj/Debug/netstandard2.0/sharedkernel.AssemblyInfo.cs
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/obj/Debug/netstandard2.0/sharedkernel.dll
-/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/sharedkernel/obj/Debug/netstandard2.0/sharedkernel.pdb
