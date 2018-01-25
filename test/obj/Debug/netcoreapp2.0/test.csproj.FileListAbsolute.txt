@@ -1,0 +1,17 @@
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/xunit.runner.utility.netstandard15.dll
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/xunit.runner.reporters.netstandard15.dll
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/test.deps.json
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/test.runtimeconfig.json
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/test.runtimeconfig.dev.json
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/test.dll
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/test.pdb
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/domain.dll
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/sharedkernel.dll
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/domain.pdb
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/bin/Debug/netcoreapp2.0/sharedkernel.pdb
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/obj/Debug/netcoreapp2.0/test.csproj.CoreCompileInputs.cache
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/obj/Debug/netcoreapp2.0/test.AssemblyInfoInputs.cache
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/obj/Debug/netcoreapp2.0/test.AssemblyInfo.cs
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/obj/Debug/netcoreapp2.0/test.dll
+/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/test/obj/Debug/netcoreapp2.0/test.pdb

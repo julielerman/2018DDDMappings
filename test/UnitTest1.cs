@@ -3,12 +3,15 @@ using Xunit;
 
 namespace test
 {
-    public class UnitTest1
+    public class DomainClassTests
     {
         [Fact]
-        public void Test1()
+        public void CanCreateNewTeam()
         {
+            var team=new Team("AFC Ajax", "The Lancers", "1900","Amsterdam Arena");
+            
 
         }
+
     }
 }

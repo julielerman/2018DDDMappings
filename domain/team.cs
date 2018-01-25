@@ -25,14 +25,14 @@ public class Team {
         }
       }
 
-      public Owner Owner { get; private set; }
+      public Manager Manager { get; private set; }
       public UniformColors HomeColors { get; set; }
       public UniformColors AwayColors { get; set; }
-      public void ChangeOwnership (Owner newOwner) {
+      public void ChangeManagement (Manager newOwner) {
         {
-          if (Owner.Name != null) {
-            if (Owner.Name != newOwner.Name) {
-              Owner.PastTeams.Add (Owner.CurrentTeamId);
+          if (Manager.Name != null) {
+            if (Manager.Name != newOwner.Name) {
+              Manager.PastTeams.Add (Manager.CurrentTeamId);
             }
           }
 

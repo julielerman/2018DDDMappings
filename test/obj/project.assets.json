@@ -1659,6 +1659,29 @@
         "build": {
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "sharedkernel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/domain.dll": {}
+        }
+      },
+      "sharedkernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/sharedkernel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/sharedkernel.dll": {}
+        }
       }
     }
   },
@@ -5604,12 +5627,23 @@
         "xunit.runner.visualstudio.2.2.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "domain/1.0.0": {
+      "type": "project",
+      "path": "../domain/domain.csproj",
+      "msbuildProject": "../domain/domain.csproj"
+    },
+    "sharedkernel/1.0.0": {
+      "type": "project",
+      "path": "../sharedkernel/sharedkernel.csproj",
+      "msbuildProject": "../sharedkernel/sharedkernel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.NET.Test.Sdk >= 15.3.0",
       "Microsoft.NETCore.App >= 2.0.0",
+      "domain >= 1.0.0",
       "xunit >= 2.2.0",
       "xunit.runner.visualstudio >= 2.2.0"
     ]
@@ -5643,7 +5677,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/domain/domain.csproj": {
+              "projectPath": "/Users/julialerman/Dropbox/ConferenceStuff/DDDEU/Demos/v1/domain/domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

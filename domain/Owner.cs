@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using SharedKernel;
 
-public class Owner
+public class Manager
 {
-  public Owner(string firstname, string lastname)
+  public Manager(string firstname, string lastname)
   {
     Name=PersonFullName.Create(firstname,lastname);
     Id=Guid.NewGuid();
