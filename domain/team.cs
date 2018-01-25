@@ -32,14 +32,15 @@ public class Team {
       public Manager Manager { get; private set; }
       public UniformColors HomeColors { get; set; }
       public UniformColors AwayColors { get; set; }
-      public void ChangeManagement (Manager newOwner) {
+      public void ChangeManagement (Manager newManager) {
         {
-          if (Manager.Name != null) {
-            if (Manager.Name != newOwner.Name) {
+          if (Manager != null) {
+            if (Manager.Name != newManager.Name) {
               Manager.PastTeams.Add (Manager.CurrentTeamId);
             }
+          }
+          Manager=newManager;
           }
 
         }
       }
-}

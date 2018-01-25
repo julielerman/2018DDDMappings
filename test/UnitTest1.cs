@@ -38,6 +38,14 @@ namespace test {
           
             Assert.Equal(1,team.Players.Count());
         }
+        [Fact]
+        public void CanChangeManager()
+        {
+            var team = CreateTeamAjax ();
+            team.ChangeManagement(new Manager("Erik", "ten Hag"));
+            Assert.Equal("Erik ten Hag",team.Manager.Name.FullName);
+
+        }
 
     }
 }
