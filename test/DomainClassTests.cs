@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Linq;
+using Domain;
 using Xunit;
 
 namespace test {
