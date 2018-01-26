@@ -6,9 +6,13 @@
  
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
-  </ItemGroup>
+    </ItemGroup>
+    <ItemGroup>
+       <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+    </ItemGroup>
    <ItemGroup>
-  <ProjectReference Include ="..\domain\domain.csproj"/>
+
+  <ProjectReference Include="..\domain\domain.csproj" />
   </ItemGroup>
 
 </Project>

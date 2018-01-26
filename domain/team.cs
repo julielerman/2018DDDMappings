@@ -51,7 +51,7 @@ namespace Domain {
       {
         if (Manager != null) {
           if (Manager.Name != newManager.Name) {
-            Manager.PastTeams.Add (Manager.CurrentTeamId);
+            Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
           }
         }
         Manager = newManager;

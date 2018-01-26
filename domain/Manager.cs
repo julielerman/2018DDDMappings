@@ -10,6 +10,6 @@ namespace Domain {
     public Guid Id { get; set; }
     public PersonFullName Name { get; set; }
     public int CurrentTeamId { get; set; }
-    public List<int> PastTeams { get; set; }
+    public List<ManagerTeamHistory> PastTeams { get; set; }
   }
 }
