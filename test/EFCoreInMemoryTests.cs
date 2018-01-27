@@ -27,6 +27,25 @@ namespace test {
             }
         }
         [Fact]
+        public void CanStoreAndRetrievePlayerName()
+        {
+              var team = CreateTeamAjax ();
+            team.AddPlayer ("André", "Onana", out string response);
+          
+            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("playername").Options;
+            using (var context = new TeamContext (options)) {
+                context.Teams.Add (team);
+                context.SaveChanges ();
+            }
+            using (var context=new TeamContext(options))
+            {
+                 var storedTeam=context.Teams.Include(t=>t.Players).FirstOrDefault();
+                Assert.Equal(1,storedTeam.Players.Count());
+                Assert.Equal("André Onana", storedTeam.Players.First().Name );
+          
+            }
+        }
+        [Fact]
         public void CanStoreAndMaterializeTeamPlayers () {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
@@ -39,9 +58,7 @@ namespace test {
              using (var context = new TeamContext (options)) {
                 var storedTeam=context.Teams.Include(t=>t.Players).FirstOrDefault();
                 Assert.Equal(1,storedTeam.Players.Count());
-                //a hint about the NEXT refactoring :)
-                //Assert.Equal("André Onana", storedTeam.Players.First().Name );
-            }
+              }
         }
          [Fact]
         public void TeamPreventsAddingPlayersToExistingTeamWhenPlayersNotInMemory () {
@@ -59,7 +76,22 @@ namespace test {
                 Assert.Equal("You must first retrieve",response.Substring(0,23));
              }
         }
-
+ [Fact]
+        public void TeamAllowsAddingPlayersToExistingTeamWhenPlayersAreLoaded () {
+            var team = CreateTeamAjax ();
+            team.AddPlayer ("André", "Onana", out string response);
+          
+            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("allowplayeronteamwithplayersloaded").Options;
+            using (var context = new TeamContext (options)) {
+                context.Teams.Add (team);
+                context.SaveChanges ();
+            }
+             using (var context = new TeamContext (options)) {
+                var storedTeam=context.Teams.Include(t=>t.Players).FirstOrDefault();
+                storedTeam.AddPlayer ("Matthijs", "de Ligt", out response);
+                Assert.Equal(2,storedTeam.Players.Count());
+             }
+        }
         
 
     }
