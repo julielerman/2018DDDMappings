@@ -43,7 +43,7 @@ namespace Domain {
         response = "You must first retrieve this team's existing list of players";
         return false;
       }
-      var fullName = PersonFullName.Create (firstName, lastname);
+      var fullName = PersonFullName.Create (firstName, lastname).FullName;
       var foundPlayer = _players.Where (p => p.Name.Equals (fullName)).FirstOrDefault ();
       if (foundPlayer == null) {
         _players.Add (new Player (firstName, lastname));
