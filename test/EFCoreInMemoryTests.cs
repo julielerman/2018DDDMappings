@@ -27,7 +27,7 @@ namespace test {
             }
         }
         [Fact]
-        public void CanStoreAndMaterializeTeamPlayers () {
+        public void CanStoreAndRetrieveTeamPlayers () {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
           
