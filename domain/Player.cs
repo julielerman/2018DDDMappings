@@ -7,6 +7,7 @@ namespace Domain {
       Name = PersonFullName.Create (firstname, lastname);
       Id = Guid.NewGuid ();
     }
+    private Player(){}
     public Guid Id { get; set; }
     public PersonFullName Name { get; set; }
   }
