@@ -16,7 +16,7 @@ namespace Domain {
       //newly created team starts out with empty players
       //team retrieved from database including players will have instantiated Players,
       //whereas from db without including players, Players will be null
-      Players = new List<Player> ();
+      _players = new List<Player> ();
     }
     public Guid Id { get; private set; }
     //Challenge:change team name so it can only be set
@@ -33,17 +33,19 @@ namespace Domain {
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
     public string HomeStadium { get; private set; } //encapsulate
-    public List<Player> Players { get; private set; }
+    //public List<Player> Players { get; private set; }
+    public IEnumerable<Player> Players => _players;
+    private List<Player> _players;
     public bool AddPlayer (string firstName, string lastname, out string response) {
-      if (Players == null) {
+      if (_players == null) {
         //this will need to be tested with integration test
         response = "You must first retrieve this team's existing list of players";
         return false;
       }
       var fullName = PersonFullName.Create (firstName, lastname);
-      var foundPlayer = Players.Where (p => p.Name.Equals (fullName)).FirstOrDefault ();
+      var foundPlayer = _players.Where (p => p.Name.Equals (fullName)).FirstOrDefault ();
       if (foundPlayer == null) {
-        Players.Add (new Player (firstName, lastname));
+        _players.Add (new Player (firstName, lastname));
         response = "Player added to team";
         return true;
       } else {
