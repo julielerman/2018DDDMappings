@@ -10,6 +10,6 @@ public class Player
       Id=Guid.NewGuid();
   }
   public Guid Id { get; private set; }
-  public PersonFullName NameFactory { get; private set; }
+  public PersonFullName NameFactory { get;  set; }
   public string Name=>NameFactory.FullName;
 }

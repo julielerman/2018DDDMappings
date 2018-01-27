@@ -21,7 +21,7 @@ public TeamContext()
         {
               modelBuilder.Ignore<ManagerTeamHistory>();
             modelBuilder.Ignore<UniformColors>();
-             modelBuilder.Ignore<PersonFullName>();
+            // modelBuilder.Ignore<PersonFullName>();
              modelBuilder.Entity<Team>()
             .Property(b => b.TeamName)
             .HasField("_teamname");
@@ -30,8 +30,10 @@ public TeamContext()
             .Metadata.FindNavigation(nameof(Team.Players));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
       
+         modelBuilder.Entity<Player>().OwnsOne(p=>p.NameFactory);
+      modelBuilder.Entity<Manager>().OwnsOne(p=>p.NameFactory);
      
-            
+             
         }
     }
 }
