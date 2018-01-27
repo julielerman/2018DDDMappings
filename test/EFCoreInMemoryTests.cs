@@ -91,8 +91,8 @@ namespace test {
                 context.SaveChanges ();
             }
              using (var context = new TeamContext (options)) {
-                var storedTeam=context.Teams.Include(t=>t.Players).FirstOrDefault();
-                storedTeam.AddPlayer ("Matthijs", "de Ligt", out response);
+              var storedTeam=context.Teams.Include(t=>t.Players).ThenInclude(p=>p.NameFactory).FirstOrDefault();
+              storedTeam.AddPlayer ("Matthijs", "de Ligt", out response);
                 Assert.Equal(2,storedTeam.Players.Count());
              }
         }
