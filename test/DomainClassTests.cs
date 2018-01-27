@@ -20,17 +20,15 @@ namespace test {
         [Fact]
         public void TeamAllowsNewPlayer () {
             var team = CreateTeamAjax ();
-            string response = "";
-            var playerWasAdded = team.AddPlayer ("André", "Onana", out response);
-            Assert.Equal ("André Onana", team.Players.First ().Name.FullName);
+            var playerWasAdded = team.AddPlayer ("André", "Onana", out string response);
+            Assert.Equal ("André Onana", team.Players.First ().Name);
 
         }
 
         [Fact]
         public void TeamAllowsMultiplePlayers () {
             var team = CreateTeamAjax ();
-            string response = "";
-            team.AddPlayer ("André", "Onana", out response);
+            team.AddPlayer ("André", "Onana", out string response);
             team.AddPlayer ("Matthijs", "de Ligt", out response);
             Assert.Equal (2, team.Players.Count ());
         }
@@ -38,8 +36,7 @@ namespace test {
         [Fact]
         public void TeamPreventsDuplicatePlayer () {
             var team = CreateTeamAjax ();
-            string response;
-            team.AddPlayer ("André", "Onana", out response);
+            team.AddPlayer ("André", "Onana", out string response);
             team.AddPlayer ("André", "Onana", out response);
             Assert.Equal (1, team.Players.Count ());
         }
@@ -47,8 +44,7 @@ namespace test {
         [Fact]
         public void TeamReturnsDuplicateMessageForDuplicatePlayer () {
             var team = CreateTeamAjax ();
-            string response;
-            team.AddPlayer ("André", "Onana", out response);
+            team.AddPlayer ("André", "Onana", out string response);
             team.AddPlayer ("André", "Onana", out response);
             Assert.Equal ("Duplicate player", response);
         }
@@ -57,7 +53,7 @@ namespace test {
         public void CanChangeManager () {
             var team = CreateTeamAjax ();
             team.ChangeManagement (new Manager ("Erik", "ten Hag"));
-            Assert.Equal ("Erik ten Hag", team.Manager.Name.FullName);
+            Assert.Equal ("Erik ten Hag", team.Manager.Name);
         }
 
         [Fact]
