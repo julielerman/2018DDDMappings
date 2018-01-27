@@ -19,13 +19,19 @@ public TeamContext()
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-             modelBuilder.Ignore<ManagerTeamHistory>();
+              modelBuilder.Ignore<ManagerTeamHistory>();
             modelBuilder.Ignore<UniformColors>();
              modelBuilder.Ignore<PersonFullName>();
              modelBuilder.Entity<Team>()
             .Property(b => b.TeamName)
             .HasField("_teamname");
+            
+          var navigation = modelBuilder.Entity<Team>()
+            .Metadata.FindNavigation(nameof(Team.Players));
+            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
       
+     
+            
         }
     }
 }

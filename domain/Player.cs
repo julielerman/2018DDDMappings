@@ -3,6 +3,7 @@ using SharedKernel;
 
 public class Player
 {
+  private Player(){}
   public Player(string firstname, string lastname)
   {
     NameFactory=PersonFullName.Create(firstname,lastname);

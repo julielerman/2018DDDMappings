@@ -35,8 +35,9 @@ namespace Domain {
     public string YearFounded { get; private set; }
     public string HomeStadium { get; private set; } //encapsulate
     //public List<Player> Players { get; private set; }
-    public IEnumerable<Player> Players => _players;
-    private List<Player> _players;
+    public IEnumerable<Player> Players => _players.ToList();
+    
+    private  ICollection<Player> _players;
     public bool AddPlayer (string firstName, string lastname, out string response) {
       if (_players == null) {
         //this will need to be tested with integration test
