@@ -26,38 +26,6 @@ namespace test {
                 Assert.Equal ("AFC Ajax", storedTeam.TeamName);
             }
         }
-        [Fact]
-        public void CanStoreAndMaterializeTeamPlayers () {
-            var team = CreateTeamAjax ();
-            team.AddPlayer ("André", "Onana", out string response);
-          
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("storeretrieveplayer").Options;
-            using (var context = new TeamContext (options)) {
-                context.Teams.Add (team);
-                context.SaveChanges ();
-            }
-             using (var context = new TeamContext (options)) {
-                var storedTeam=context.Teams.Include(t=>t.Players).FirstOrDefault();
-                Assert.Equal(1,storedTeam.Players.Count());
-                Assert.Equal("André Onana", storedTeam.Players.First().Name );
-            }
-        }
-         [Fact]
-        public void TeamPreventsAddingPlayersToExistingTeamWhenPlayersNotInMemory () {
-            var team = CreateTeamAjax ();
-            team.AddPlayer ("André", "Onana", out string response);
-          
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("preventplayeronteamwithplayersnotloaded").Options;
-            using (var context = new TeamContext (options)) {
-                context.Teams.Add (team);
-                context.SaveChanges ();
-            }
-             using (var context = new TeamContext (options)) {
-                var storedTeam=context.Teams.FirstOrDefault();
-                storedTeam.AddPlayer ("Matthijs", "de Ligt", out response);
-                Assert.Equal("You must first retrieve",response.Substring(0,23));
-             }
-        }
-
+  
     }
 }
