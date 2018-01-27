@@ -22,6 +22,9 @@ public TeamContext()
              modelBuilder.Ignore<ManagerTeamHistory>();
             modelBuilder.Ignore<UniformColors>();
              modelBuilder.Ignore<PersonFullName>();
+             modelBuilder.Entity<Team>()
+            .Property(b => b.TeamName)
+            .HasField("_teamname");
       
         }
     }

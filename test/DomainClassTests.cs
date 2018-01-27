@@ -64,7 +64,7 @@ namespace test {
         public void CanSetHomeColorsWhenAwayColorsAreNotSet () {
             var team = CreateTeamAjax ();
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (Color.White, team.HomeColors.ShirtPrimary);
+            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary);
         }
 
         [Fact]
@@ -72,7 +72,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.SpecifyAwayUniformColors (Color.Blue, Color.Red, Color.Empty, Color.Blue, Color.Empty, Color.Blue, false);
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (Color.White, team.HomeColors.ShirtPrimary);
+            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary);
         }
 
         [Fact]
