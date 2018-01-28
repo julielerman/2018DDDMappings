@@ -22,10 +22,12 @@ namespace Domain {
     }
     public void BecameTeamManager(Guid newTeamId)
     {
-      if (CurrentTeamId==Guid.Empty)
-      { PastTeams.Add (new ManagerTeamHistory(Id,CurrentTeamId));
-        CurrentTeamId=newTeamId;
-    }
+      if (CurrentTeamId!=Guid.Empty)
+      { 
+        PastTeams.Add (new ManagerTeamHistory(Id,CurrentTeamId));  
+      }
+      CurrentTeamId=newTeamId;
+    
     }
   }
 }

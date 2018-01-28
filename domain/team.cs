@@ -62,7 +62,7 @@ namespace Domain {
         if (Manager is null || Manager.Name != newManager.Name) {
           // Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
           //Manager.CurrentTeamId=Guid.Empty();
-          // Manager.RemoveFromTeam(Id);
+           Manager?.RemoveFromTeam(Id);
           newManager.BecameTeamManager (Id);
           Manager = newManager;
         }
