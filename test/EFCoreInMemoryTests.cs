@@ -65,6 +65,23 @@ namespace test {
               }
         }
          [Fact]
+         public void CanStoreAndRetrieveTeamManager () {
+            var team = CreateTeamAjax ();
+            var firstmanager=new Manager ("Marcel", "Keizer");
+            team.ChangeManagement(firstmanager);
+            
+            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("CanStoreAndRetrieveTeamManager").Options;
+         using (var context = new TeamContext (options)) {
+                context.Teams.Add (team);
+                context.SaveChanges ();
+            }
+             using (var context = new TeamContext (options)) {
+                var storedTeam=context.Teams.Include(t=>t.Manager).ThenInclude(m=>m.NameFactory).FirstOrDefault();
+                Assert.Equal(firstmanager.Name,storedTeam.Manager.Name);
+                Assert.Equal(storedTeam.Id,storedTeam.Manager.CurrentTeamId);
+              }
+                }
+         [Fact]
         public void TeamPreventsAddingPlayersToExistingTeamWhenPlayersNotInMemory () {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
@@ -112,7 +129,7 @@ namespace test {
                 context.SaveChanges ();
             }
              using (var context = new TeamContext (options)) {
-                     var M1=context.Managers.Include(m=>m.PastTeams).FirstOrDefault(m=>m.NameFactory.Last=="Keizer");
+                 var M1=context.Managers.Include(m=>m.PastTeams).FirstOrDefault(m=>m.NameFactory.Last=="Keizer");
                  var M2=context.Managers.Include(m=>m.PastTeams).FirstOrDefault(m=>m.NameFactory.Last=="ten Hag");
                  Assert.Equal(new{M1="Marcel Keizer",M1Count=1,M2="Erik ten Hag",M2Count=0},
                   new{M1=M1.Name, M1Count=M1.PastTeams.Count, M2=M2.Name, M2Count=M2.PastTeams.Count} );

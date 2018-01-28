@@ -50,10 +50,32 @@ namespace test {
         }
 
         [Fact]
-        public void CanChangeManager () {
+        public void CanAddManager () {
             var team = CreateTeamAjax ();
-            team.ChangeManagement (new Manager ("Erik", "ten Hag"));
-            Assert.Equal ("Erik ten Hag", team.Manager.Name);
+            var firstmanager=new Manager ("Marcel", "Keizer");
+            team.ChangeManagement(firstmanager);
+            Assert.Equal(team.Id, firstmanager.CurrentTeamId);
+            Assert.Equal(firstmanager,team.Manager);
+             }
+         [Fact]
+        public void CanReplaceManager () {
+            var team = CreateTeamAjax ();
+            var firstmanager=new Manager ("Marcel", "Keizer");
+            team.ChangeManagement(firstmanager);
+          var newmanager=(new Manager ("Erik", "ten Hag"));
+           team.ChangeManagement (newmanager);
+           Assert.Equal(team.Id,newmanager.CurrentTeamId);
+           Assert.Equal(newmanager,team.Manager);
+        }
+         
+          [Fact]
+          public void ReplacedManagerHasNoCurrentTeamId () {
+            var team = CreateTeamAjax ();
+            var firstmanager=new Manager ("Marcel", "Keizer");
+            team.ChangeManagement(firstmanager);
+          var newmanager=(new Manager ("Erik", "ten Hag"));
+           team.ChangeManagement (newmanager);
+            Assert.Equal (Guid.Empty, firstmanager.CurrentTeamId);
         }
 
         [Fact]

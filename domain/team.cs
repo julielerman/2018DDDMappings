@@ -6,10 +6,10 @@ using SharedKernel;
 
 namespace Domain {
   public class Team {
-       private Team(){ }
-        public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
+    private Team () { }
+    public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
       //TeamName = teamName;
-      _teamname=teamName;
+      _teamname = teamName;
       Nickname = nickname;
       YearFounded = yearFounded;
       HomeStadium = homeStadium;
@@ -25,19 +25,18 @@ namespace Domain {
     //with backing field  _teamname
     //public string TeamName { get; private set; }
     private string _teamname;
-    public string TeamName
-    {
-        get { return _teamname;}
-        //private set{}
+    public string TeamName {
+      get { return _teamname; }
+      //private set{}
     }
-    
+
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
     public string HomeStadium { get; private set; } //encapsulate
     //public List<Player> Players { get; private set; }
-    public IEnumerable<Player> Players => _players.ToList();
-    
-    private  ICollection<Player> _players;
+    public IEnumerable<Player> Players => _players.ToList ();
+
+    private ICollection<Player> _players;
     public bool AddPlayer (string firstName, string lastname, out string response) {
       if (_players == null) {
         //this will need to be tested with integration test
@@ -60,40 +59,42 @@ namespace Domain {
     public UniformColors HomeColors { get; private set; }
     public UniformColors AwayColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
-      {
-        if (Manager != null) {
-          if (Manager.Name != newManager.Name) {
-            Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
-          }
+        if (Manager is null || Manager.Name != newManager.Name) {
+          // Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
+          //Manager.CurrentTeamId=Guid.Empty();
+          // Manager.RemoveFromTeam(Id);
+          newManager.BecameTeamManager (Id);
+          Manager = newManager;
         }
-        Manager = newManager;
-      }
+      // newManager.BecameTeamManager(Id);
+      // Manager = newManager;
+  //   }
+   }
+  public bool SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks, bool force) {
+    var colorSet = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
+    if (AwayColors is null) {
+      HomeColors = colorSet;
+      return true;
     }
-    public bool SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks, bool force) {
-      var colorSet = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
-      if (AwayColors is null) {
-        HomeColors = colorSet;
-        return true;
-      }
-      if (!colorSet.Equals (AwayColors) || (colorSet.Equals (AwayColors) && force)) {
-        HomeColors = colorSet;
-        return true;
-      } else {
-        return false;
-      }
-    }
-    public bool SpecifyAwayUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks, bool force) {
-      var colorSet = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
-      if (HomeColors is null) {
-        AwayColors = colorSet;
-        return true;
-      }
-      if (!colorSet.Equals (HomeColors) || (colorSet.Equals (HomeColors) && force)) {
-        AwayColors = colorSet;
-        return true;
-      } else {
-        return false;
-      }
+    if (!colorSet.Equals (AwayColors) || (colorSet.Equals (AwayColors) && force)) {
+      HomeColors = colorSet;
+      return true;
+    } else {
+      return false;
     }
   }
+  public bool SpecifyAwayUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks, bool force) {
+    var colorSet = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
+    if (HomeColors is null) {
+      AwayColors = colorSet;
+      return true;
+    }
+    if (!colorSet.Equals (HomeColors) || (colorSet.Equals (HomeColors) && force)) {
+      AwayColors = colorSet;
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
 }

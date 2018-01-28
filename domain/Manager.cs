@@ -13,7 +13,19 @@ namespace Domain {
     public Guid Id { get; set; }
     public PersonFullName NameFactory { get; private set; }
     public string Name => NameFactory.FullName;
-    public Guid CurrentTeamId { get; set; }
-    public List<ManagerTeamHistory> PastTeams { get; set; }
+    public Guid CurrentTeamId { get; private set; }
+    public List<ManagerTeamHistory> PastTeams { get; private set; }
+    public void RemoveFromTeam(Guid oldTeamId){
+      CurrentTeamId=Guid.Empty;
+      PastTeams.Add (new ManagerTeamHistory(Id,oldTeamId));
+     
+    }
+    public void BecameTeamManager(Guid newTeamId)
+    {
+      if (CurrentTeamId==Guid.Empty)
+      { PastTeams.Add (new ManagerTeamHistory(Id,CurrentTeamId));
+        CurrentTeamId=newTeamId;
+    }
+    }
   }
 }
