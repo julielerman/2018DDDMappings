@@ -13,7 +13,7 @@ namespace Domain {
     public Guid Id { get; set; }
     public PersonFullName NameFactory { get; private set; }
     public string Name => NameFactory.FullName;
-    public int CurrentTeamId { get; set; }
+    public Guid CurrentTeamId { get; set; }
     public List<ManagerTeamHistory> PastTeams { get; set; }
   }
 }
