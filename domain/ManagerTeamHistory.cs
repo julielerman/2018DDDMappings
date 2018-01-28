@@ -8,6 +8,9 @@ namespace Domain
       ManagerId=managerId;
       TeamId=teamId;
   }
+  private ManagerTeamHistory()
+  {
+  }
     public Guid ManagerId { get; private set; }
     public Guid TeamId { get; private set; }
   }

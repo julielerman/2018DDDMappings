@@ -80,8 +80,8 @@ namespace test {
                 Assert.Equal("You must first retrieve",response.Substring(0,23));
              }
         }
- [Fact]
-        public void TeamAllowsAddingPlayersToExistingTeamWhenPlayersAreLoaded () {
+        [Fact]
+         public void TeamAllowsAddingPlayersToExistingTeamWhenPlayersAreLoaded () {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
           
@@ -96,6 +96,29 @@ namespace test {
                 Assert.Equal(2,storedTeam.Players.Count());
              }
         }
+
+           [Fact]
+         public void CanStoreAndRetrieveManagerTeamHistory()
+         {
+            var team = CreateTeamAjax ();
+            team.AddPlayer ("André", "Onana", out string response);
+            var firstmanager=new Manager ("Marcel", "Keizer");
+            team.ChangeManagement (firstmanager);
+             team.ChangeManagement (new Manager ("Erik", "ten Hag"));
+              
+            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("storemanagerhistory").Options;
+            using (var context = new TeamContext (options)) {
+                context.AddRange (team,firstmanager);
+                context.SaveChanges ();
+            }
+             using (var context = new TeamContext (options)) {
+                     var M1=context.Managers.Include(m=>m.PastTeams).FirstOrDefault(m=>m.NameFactory.Last=="Keizer");
+                 var M2=context.Managers.Include(m=>m.PastTeams).FirstOrDefault(m=>m.NameFactory.Last=="ten Hag");
+                 Assert.Equal(new{M1="Marcel Keizer",M1Count=1,M2="Erik ten Hag",M2Count=0},
+                  new{M1=M1.Name, M1Count=M1.PastTeams.Count, M2=M2.Name, M2Count=M2.PastTeams.Count} );
+            }
+
+         }
         
 
     }
