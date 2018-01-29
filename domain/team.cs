@@ -55,7 +55,7 @@ namespace Domain {
       }
     }
 
-    private Manager Manager {get;set;}
+    private Manager Manager =>_manager ;//{get;set;}
     private Manager _manager;
     public string ManagerName=>_manager.Name;
 
