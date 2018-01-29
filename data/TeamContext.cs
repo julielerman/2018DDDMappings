@@ -31,6 +31,9 @@ namespace Data {
 
             modelBuilder.Entity<Player> ().OwnsOne (p => p.NameFactory);
             modelBuilder.Entity<Manager> ().OwnsOne (p => p.NameFactory);
+modelBuilder.Entity<Team> ()
+   .HasOne (typeof (Manager), "Manager").WithOne ()
+   .HasForeignKey(typeof (Manager), "CurrentTeamId");
 
         }
     }
