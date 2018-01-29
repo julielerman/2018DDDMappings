@@ -103,24 +103,6 @@ namespace test {
             }
         }
 
-      [Fact]  public void CanStoreAndRetrieveTeamManager () {
-            var team = CreateTeamAjax ();
-            var firstmanager = new Manager ("Marcel", "Keizer");
-            team.ChangeManagement (firstmanager);
-
-              using (var context = new TeamContext ()) {
-                context.Database.EnsureDeleted ();
-                context.Database.EnsureCreated ();
-               context.Teams.Add (team);
-                context.SaveChanges ();
-            }
-            using (var context = new TeamContext ()) {
-               //remember the bug. have to include the ownedentity of an included type
-                var storedTeam = context.Teams.Include (t => t.Manager).ThenInclude(m=>m.NameFactory).FirstOrDefault ();
-                Assert.Equal (firstmanager.Name, storedTeam.Manager.Name);
-                Assert.Equal (storedTeam.Id, storedTeam.Manager.CurrentTeamId);
-            }
-        }
 
         [Fact]
         public void CanStoreAndRetrieveManagerTeamHistory () {
@@ -145,5 +127,25 @@ namespace test {
 
         }
 
+#if true
+      [Fact]  public void CanStoreAndRetrieveTeamManager () {
+            var team = CreateTeamAjax ();
+            var firstmanager = new Manager ("Marcel", "Keizer");
+            team.ChangeManagement (firstmanager);
+
+              using (var context = new TeamContext ()) {
+                context.Database.EnsureDeleted ();
+                context.Database.EnsureCreated ();
+               context.Teams.Add (team);
+                context.SaveChanges ();
+            }
+            using (var context = new TeamContext ()) {
+               //remember the bug. have to include the ownedentity of an included type
+                var storedTeam = context.Teams.Include (t => t.Manager).ThenInclude(m=>m.NameFactory).FirstOrDefault ();
+                Assert.Equal (firstmanager.Name, storedTeam.Manager.Name);
+                Assert.Equal (storedTeam.Id, storedTeam.Manager.CurrentTeamId);
+            }
+        }
+#endif
     }
 }
