@@ -55,7 +55,7 @@ namespace test {
             var firstmanager=new Manager ("Marcel", "Keizer");
             team.ChangeManagement(firstmanager);
             Assert.Equal(team.Id, firstmanager.CurrentTeamId);
-            Assert.Equal(firstmanager,team.Manager);
+            Assert.Equal(firstmanager.Name,team.ManagerName);
              }
          [Fact]
         public void CanReplaceManager () {
@@ -65,7 +65,7 @@ namespace test {
           var newmanager=(new Manager ("Erik", "ten Hag"));
            team.ChangeManagement (newmanager);
            Assert.Equal(team.Id,newmanager.CurrentTeamId);
-           Assert.Equal(newmanager,team.Manager);
+           Assert.Equal(newmanager.Name,team.ManagerName);
         }
          
           [Fact]

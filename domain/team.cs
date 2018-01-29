@@ -55,16 +55,19 @@ namespace Domain {
       }
     }
 
-    public Manager Manager { get; private set; }
+    private Manager Manager =>_manager;
+    private Manager _manager;
+    public string ManagerName=>_manager.Name;
+
     public UniformColors HomeColors { get; private set; }
     public UniformColors AwayColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
-        if (Manager is null || Manager.Name != newManager.Name) {
+        if (_manager is null || _manager.Name != newManager.Name) {
           // Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
           //Manager.CurrentTeamId=Guid.Empty();
-           Manager?.RemoveFromTeam(Id);
-          newManager.BecameTeamManager (Id);
-          Manager = newManager;
+           _manager?.RemoveFromTeam(Id);
+          _manager.BecameTeamManager (Id);
+          _manager = newManager;
         }
       // newManager.BecameTeamManager(Id);
       // Manager = newManager;
