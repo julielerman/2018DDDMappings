@@ -66,6 +66,7 @@ namespace test {
            team.ChangeManagement (newmanager);
            Assert.Equal(team.Id,newmanager.CurrentTeamId);
            Assert.Equal(newmanager.Name,team.ManagerName);
+
         }
          
           [Fact]
@@ -76,6 +77,15 @@ namespace test {
           var newmanager=(new Manager ("Erik", "ten Hag"));
            team.ChangeManagement (newmanager);
             Assert.Equal (Guid.Empty, firstmanager.CurrentTeamId);
+        }
+          [Fact]
+          public void ReplacedManagerHasOldTeamIdInPastIds () {
+            var team = CreateTeamAjax ();
+            var firstmanager=new Manager ("Marcel", "Keizer");
+            team.ChangeManagement(firstmanager);
+          var newmanager=(new Manager ("Erik", "ten Hag"));
+           team.ChangeManagement (newmanager);
+            Assert.Equal (team.Id, firstmanager.PastTeams.FirstOrDefault().TeamId);
         }
 
         [Fact]

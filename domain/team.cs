@@ -55,7 +55,7 @@ namespace Domain {
       }
     }
 
-    private Manager Manager =>_manager;
+    private Manager Manager {get;set;}
     private Manager _manager;
     public string ManagerName=>_manager.Name;
 
@@ -66,8 +66,9 @@ namespace Domain {
           // Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
           //Manager.CurrentTeamId=Guid.Empty();
            _manager?.RemoveFromTeam(Id);
-          _manager.BecameTeamManager (Id);
+         
           _manager = newManager;
+           _manager.BecameTeamManager (Id);
         }
       // newManager.BecameTeamManager(Id);
       // Manager = newManager;
