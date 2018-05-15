@@ -60,7 +60,7 @@ namespace test {
         public void CanSetHomeColors() {
             var team = CreateTeamAjax ();
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White);
-            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary.Name);
+            Assert.Equal (Color.White, team.HomeColors.ShirtPrimary);
         }
 
       
