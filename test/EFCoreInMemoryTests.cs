@@ -38,7 +38,7 @@ namespace test {
             }
              using (var context = new TeamContext (options)) {
                 var storedTeam=context.Teams.Include(t=>t.Players).FirstOrDefault();
-                Assert.Equal(1,storedTeam.Players.Count());
+                Assert.Single(storedTeam.Players);
                 //a hint about the NEXT refactoring :)
                 //Assert.Equal("André Onana", storedTeam.Players.First().Name );
             }

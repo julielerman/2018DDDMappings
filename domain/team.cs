@@ -14,21 +14,15 @@ namespace Domain {
       YearFounded = yearFounded;
       HomeStadium = homeStadium;
       Id = Guid.NewGuid ();
-      //newly created team starts out with empty players
-      //team retrieved from database including players will have instantiated Players,
-      //whereas from db without including players, Players will be null
       _players = new List<Player> ();
     }
     public Guid Id { get; private set; }
-    //Challenge:change team name so it can only be set
-    //in constructor and never edited
-    //with backing field  _teamname
-    //public string TeamName { get; private set; }
+  
     private string _teamname;
     public string TeamName
     {
         get { return _teamname;}
-        //private set{}
+   
     }
     
     public string Nickname { get; private set; }
@@ -69,31 +63,9 @@ namespace Domain {
         Manager = newManager;
       }
     }
-    public bool SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks, bool force) {
-      var colorSet = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
-      if (AwayColors is null) {
-        HomeColors = colorSet;
-        return true;
-      }
-      if (!colorSet.Equals (AwayColors) || (colorSet.Equals (AwayColors) && force)) {
-        HomeColors = colorSet;
-        return true;
-      } else {
-        return false;
-      }
+    public void SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
+      HomeColors = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
     }
-    public bool SpecifyAwayUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks, bool force) {
-      var colorSet = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
-      if (HomeColors is null) {
-        AwayColors = colorSet;
-        return true;
-      }
-      if (!colorSet.Equals (HomeColors) || (colorSet.Equals (HomeColors) && force)) {
-        AwayColors = colorSet;
-        return true;
-      } else {
-        return false;
-      }
-    }
+   
   }
 }
