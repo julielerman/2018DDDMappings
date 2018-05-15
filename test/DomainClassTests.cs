@@ -38,7 +38,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
             team.AddPlayer ("André", "Onana", out response);
-            Assert.Equal (1, team.Players.Count ());
+            Assert.Single (team.Players);
         }
 
         [Fact]
@@ -89,26 +89,12 @@ namespace test {
         }
 
         [Fact]
-        public void CanSetHomeColorsWhenAwayColorsAreNotSet () {
+        public void CanSetHomeColors () {
             var team = CreateTeamAjax ();
-            team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary);
+            team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White);
+            Assert.Equal (Color.White, team.HomeColors.ShirtPrimary);
         }
 
-        [Fact]
-        public void CanSetHomeColorsWhenAwayColorsAreDifferent () {
-            var team = CreateTeamAjax ();
-            team.SpecifyAwayUniformColors (Color.Blue, Color.Red, Color.Empty, Color.Blue, Color.Empty, Color.Blue, false);
-            team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary);
-        }
-
-        [Fact]
-        public void CannotSetHomeColorsWhenAwayColorsAreSameAndNotForced () {
-            var team = CreateTeamAjax ();
-            team.SpecifyAwayUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            var response = team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (response, false);
-        }
+        
     }
 }

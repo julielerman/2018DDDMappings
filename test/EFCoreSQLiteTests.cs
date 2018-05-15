@@ -44,7 +44,7 @@ namespace test {
                 //https://github.com/aspnet/EntityFrameworkCore/issues/9210
                 //requires a workaround of including the owned entity of an included navigation property
                 var storedTeam = context.Teams.Include (t => t.Players).ThenInclude (p => p.NameFactory).FirstOrDefault ();
-                Assert.Equal (1, storedTeam.Players.Count ());
+                Assert.Single ( storedTeam.Players);
                 Assert.Equal ("André Onana", storedTeam.Players.First ().Name);
 
             }
@@ -63,7 +63,7 @@ namespace test {
             }
             using (var context = new TeamContext ()) {
                 var storedTeam = context.Teams.Include (t => t.Players).FirstOrDefault ();
-                Assert.Equal (1, storedTeam.Players.Count ());
+                Assert.Single (storedTeam.Players);
             }
         }
 
