@@ -20,7 +20,7 @@ public TeamContext()
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
               modelBuilder.Ignore<ManagerTeamHistory>();
-            modelBuilder.Ignore<UniformColors>();
+              modelBuilder.Ignore<UniformColors>();
             // modelBuilder.Ignore<PersonFullName>();
              modelBuilder.Entity<Team>()
             .Property(b => b.TeamName)
@@ -30,8 +30,8 @@ public TeamContext()
             .Metadata.FindNavigation(nameof(Team.Players));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
       
-         modelBuilder.Entity<Player>().OwnsOne(p=>p.NameFactory);
-      modelBuilder.Entity<Manager>().OwnsOne(p=>p.NameFactory);
+        //  modelBuilder.Entity<Player>().OwnsOne(p=>p.NameFactory);
+        //  modelBuilder.Entity<Manager>().OwnsOne(p=>p.NameFactory);
      
              
         }
