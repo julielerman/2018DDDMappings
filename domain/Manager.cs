@@ -7,7 +7,9 @@ namespace Domain {
       NameFactory = PersonFullName.Create (firstname, lastname);
       Id = Guid.NewGuid ();
     }
-    private Manager(){}
+    //still needed because ctor is using props from the owned type
+    private Manager(){} 
+    
     public Guid Id { get; set; }
     public PersonFullName NameFactory { get; private set; }
     public string Name => NameFactory.FullName;

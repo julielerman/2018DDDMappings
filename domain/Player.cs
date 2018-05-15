@@ -3,7 +3,9 @@ using SharedKernel;
 
 public class Player
 {
+  //still needed because ctor is using props from the owned type
   private Player(){}
+  
   public Player(string firstname, string lastname)
   {
     NameFactory=PersonFullName.Create(firstname,lastname);
