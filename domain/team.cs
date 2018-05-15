@@ -28,6 +28,8 @@ namespace Domain {
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
     public string HomeStadium { get; private set; } //encapsulate
+    
+    ///Encapsulate Players collection
     //public List<Player> Players { get; private set; }
     public IEnumerable<Player> Players => _players.ToList();
     
