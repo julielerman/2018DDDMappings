@@ -6,7 +6,7 @@ using SharedKernel;
 
 namespace Domain {
   public class Team {
-       private Team(){ }
+       //private Team(){ } //<==no longer needed!!!
         public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
       //TeamName = teamName;
       _teamname=teamName;
@@ -14,9 +14,6 @@ namespace Domain {
       YearFounded = yearFounded;
       HomeStadium = homeStadium;
       Id = Guid.NewGuid ();
-      //newly created team starts out with empty players
-      //team retrieved from database including players will have instantiated Players,
-      //whereas from db without including players, Players will be null
       Players = new List<Player> ();
     }
     public Guid Id { get; private set; }

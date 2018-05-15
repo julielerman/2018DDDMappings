@@ -38,7 +38,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
             team.AddPlayer ("André", "Onana", out response);
-            Assert.Equal (1, team.Players.Count ());
+            Assert.Single( team.Players);
         }
 
         [Fact]
