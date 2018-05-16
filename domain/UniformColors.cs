@@ -15,7 +15,7 @@ namespace Domain {
     // }
      public UniformColors (Color shirtPrimary, Color shirtSecondary, Color shirtTertiary, Color shortsPrimary, Color shortsSecondary, Color socks) {
       ShirtPrimary = shirtPrimary;
-      ShortsSecondary = shirtSecondary;
+      ShirtSecondary = shirtSecondary;
       ShirtTertiary = shirtTertiary;
       ShortsPrimary = shortsPrimary;
       ShortsSecondary = shortsSecondary;
