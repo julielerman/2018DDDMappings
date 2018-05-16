@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;
@@ -25,10 +26,12 @@ namespace Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ManagerTeamHistory>().HasKey(m => new { m.ManagerId, m.TeamId });
-            //modelBuilder.Ignore<UniformColors>();
             modelBuilder.Entity<Team>()
                .Property(b => b.TeamName)
                .HasField("_teamname");
+           modelBuilder.Entity<Team>().Property<DateTime>("Created");
+           modelBuilder.Entity<Team>().Property<DateTime>("LastModified");
+           
 
             var navigation = modelBuilder.Entity<Team>()
                 .Metadata.FindNavigation(nameof(Team.Players));
@@ -57,6 +60,20 @@ namespace Data
 //There is currently no way to specify in one place that every property
 //of a given type must use the same value converter.
 //This feature will be considered for a future release.
+        }
+        public override int SaveChanges()
+        {
+            var timestamp=DateTime.Now;
+            foreach (var entry in ChangeTracker.Entries()
+                      .Where(e=>e.Entity is Team && 
+                                  (e.State==EntityState.Added || e.State==EntityState.Modified)
+                            ) 
+                    )
+            {
+entry.Property("LastModified").CurrentValue = timestamp;
+ entry.Property("Created").CurrentValue = timestamp;             
+            }
+            return base.SaveChanges();
         }
     }
 }
