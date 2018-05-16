@@ -122,8 +122,8 @@ namespace test {
 
         }
 
-        #if true
-        [Fact]
+        
+        //[Fact]
         public void CanStoreAndRetrieveTeamManager () {
             var team = CreateTeamAjax ();
             var firstmanager = new Manager ("Marcel", "Keizer");
@@ -141,7 +141,17 @@ namespace test {
                 Assert.Equal (storedTeam.Id, storedManager.CurrentTeamId);
             }
         }
-        #endif
-
+       
+[Fact]
+        public void CanStoreAndRetrieveHomeColors () {
+            var team = CreateTeamAjax ();
+            team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White);
+             var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("storemanagerhistory").Options;
+         
+        using (var context = new TeamContext (options)) {
+                context.Teams.Add (team);
+                context.SaveChanges ();
+            }
+        }
     }
 }
