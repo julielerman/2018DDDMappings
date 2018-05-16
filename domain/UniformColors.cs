@@ -12,6 +12,7 @@ namespace Domain {
       Socks = socks;
 
     }
+    public int Id { get; set; }
     public Color ShirtPrimary { get; private set; }
     public Color ShirtSecondary { get; private set; }
     public Color ShirtTertiary { get; private set; }
