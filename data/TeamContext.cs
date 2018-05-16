@@ -30,8 +30,8 @@ public TeamContext()
             .Metadata.FindNavigation(nameof(Team.Players));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
       
-        //  modelBuilder.Entity<Player>().OwnsOne(p=>p.NameFactory);
-        //  modelBuilder.Entity<Manager>().OwnsOne(p=>p.NameFactory);
+         modelBuilder.Entity<Player>().OwnsOne(p=>p.NameFactory);
+         modelBuilder.Entity<Manager>().OwnsOne(p=>p.NameFactory);
      
              
         }
