@@ -8,7 +8,6 @@ namespace Domain {
   public class Team {
     private Team () { }
     public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
-      //TeamName = teamName;
       _teamname = teamName;
       Nickname = nickname;
       YearFounded = yearFounded;
@@ -20,20 +19,12 @@ namespace Domain {
       _players = new List<Player> ();
     }
     public Guid Id { get; private set; }
-    //Challenge:change team name so it can only be set
-    //in constructor and never edited
-    //with backing field  _teamname
-    //public string TeamName { get; private set; }
     private string _teamname;
-    public string TeamName {
-      get { return _teamname; }
-      //private set{}
-    }
+    public string TeamName =>_teamname;
 
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
-    public string HomeStadium { get; private set; } //encapsulate
-    //public List<Player> Players { get; private set; }
+    public string HomeStadium { get; private set; } 
     public IEnumerable<Player> Players => _players.ToList ();
 
     private ICollection<Player> _players;
@@ -60,7 +51,6 @@ namespace Domain {
     public string ManagerName=>_manager.Name;
 
     public UniformColors HomeColors { get; private set; }
-    public UniformColors AwayColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
         if (_manager is null || _manager.Name != newManager.Name) {
           // Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));

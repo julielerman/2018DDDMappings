@@ -38,13 +38,9 @@ namespace test {
                 context.SaveChanges ();
             }
             using (var context = new TeamContext (options)) {
-                //note a current bug:
-                //https://github.com/aspnet/EntityFrameworkCore/issues/9210
-                //requires a workaround of including the owned entity of an included navigation property
-                var storedTeam = context.Teams.Include (t => t.Players).ThenInclude (p => p.NameFactory).FirstOrDefault ();
-                Assert.Single ( storedTeam.Players);
+                var storedTeam = context.Teams.Include (t => t.Players).FirstOrDefault ();
+                Assert.Single (storedTeam.Players);
                 Assert.Equal ("André Onana", storedTeam.Players.First ().Name);
-
             }
         }
 
@@ -63,8 +59,6 @@ namespace test {
                 Assert.Single (storedTeam.Players);
             }
         }
-
-
 
         [Fact]
         public void TeamPreventsAddingPlayersToExistingTeamWhenPlayersNotInMemory () {
@@ -122,7 +116,7 @@ namespace test {
 
         }
 
-        #if true
+#if true
         [Fact]
         public void CanStoreAndRetrieveTeamManager () {
             var team = CreateTeamAjax ();
@@ -135,13 +129,13 @@ namespace test {
                 context.SaveChanges ();
             }
             using (var context = new TeamContext (options)) {
-                var storedTeam = context.Teams.Include("Manager").Include ("Manager.NameFactory").FirstOrDefault ();
+                var storedTeam = context.Teams.Include ("Manager").Include ("Manager.NameFactory").FirstOrDefault ();
                 Assert.Equal (firstmanager.Name, storedTeam.ManagerName);
-                var storedManager=context.Teams.Select(t => EF.Property<Manager>(t, "Manager")).FirstOrDefault();
+                var storedManager = context.Teams.Select (t => EF.Property<Manager> (t, "Manager")).FirstOrDefault ();
                 Assert.Equal (storedTeam.Id, storedManager.CurrentTeamId);
             }
         }
-        #endif
+#endif
 
     }
 }
