@@ -26,11 +26,7 @@ namespace Domain {
     //public string TeamName { get; private set; }
     private string _teamname;
     public string TeamName => _teamname;
-    { get{};private set{}
-        get { return _teamname;}
-        //private set{}
-    }
-    
+                          //{ get; private set; }   
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
     public string HomeStadium { get; private set; } 

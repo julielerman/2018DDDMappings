@@ -6,10 +6,8 @@ using SharedKernel;
 namespace Data {
     public class TeamContext : DbContext {
         public TeamContext (DbContextOptions<TeamContext> options) : base (options) { }
-public TeamContext()
-{
-    
-}
+        public TeamContext () { }
+        
         public DbSet<Team> Teams { get; set; }
 
         protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder) {
@@ -17,15 +15,17 @@ public TeamContext()
                 optionsBuilder.UseSqlite ("Data Source=TeamData.db");
             }
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-             modelBuilder.Ignore<ManagerTeamHistory>();
-            modelBuilder.Ignore<UniformColors>();
-             modelBuilder.Ignore<PersonFullName>();
-             modelBuilder.Entity<Team>()
-            .Property(b => b.TeamName)
-            .HasField("_teamname");
-      
+        protected override void OnModelCreating (ModelBuilder modelBuilder) {
+           //Not mapped yet
+            modelBuilder.Ignore<ManagerTeamHistory> ();
+            modelBuilder.Ignore<UniformColors> ();
+            modelBuilder.Ignore<PersonFullName> ();
+           //
+           
+            modelBuilder.Entity<Team> ()
+                .Property (b => b.TeamName)
+                .HasField ("_teamname");
+
         }
     }
 }
