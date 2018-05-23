@@ -50,7 +50,7 @@ namespace Domain {
     private Manager _manager;
     public string ManagerName=>_manager.Name;
 
-    public UniformColors HomeColors { get; private set; }
+     public UniformColors HomeColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
         if (_manager is null || _manager.Name != newManager.Name) {
           // Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
