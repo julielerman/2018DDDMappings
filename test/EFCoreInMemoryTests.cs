@@ -38,10 +38,7 @@ namespace test {
                 context.SaveChanges ();
             }
             using (var context = new TeamContext (options)) {
-                //note a current bug:
-                //https://github.com/aspnet/EntityFrameworkCore/issues/9210
-                //requires a workaround of including the owned entity of an included navigation property
-                // var storedTeam = context.Teams.Include (t => t.Players).ThenInclude (p => p.NameFactory).FirstOrDefault ();
+               
                 var storedTeam = context.Teams.Include (t => t.Players).FirstOrDefault ();
               
                 Assert.Single (storedTeam.Players);
