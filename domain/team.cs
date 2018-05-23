@@ -6,10 +6,11 @@ using SharedKernel;
 
 namespace Domain {
   public class Team {
-       //private Team(){ } //<==no longer needed!!!
-        public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
+      //private Team(){ } //<==no longer needed in 2.1 yay
+      public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
       //TeamName = teamName;
       _teamname=teamName;
+      
       Nickname = nickname;
       YearFounded = yearFounded;
       HomeStadium = homeStadium;
@@ -17,25 +18,26 @@ namespace Domain {
       Players = new List<Player> ();
     }
     public Guid Id { get; private set; }
-    //Challenge:change team name so it can only be set
+    
+    //changed team name so it can only be set
     //in constructor and never edited
-    //with backing field  _teamname
+    //uses backing field  _teamname
     
     //public string TeamName { get; private set; }
     private string _teamname;
-    public string TeamName
-    {
+    public string TeamName => _teamname;
+    { get{};private set{}
         get { return _teamname;}
         //private set{}
     }
     
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
-    public string HomeStadium { get; private set; } //encapsulate
+    public string HomeStadium { get; private set; } 
+    
     public List<Player> Players { get; private set; }
-        public bool AddPlayer (string firstName, string lastname, out string response) {
+    public bool AddPlayer (string firstName, string lastname, out string response) {
       if (Players == null) {
-        //this will need to be tested with integration test
         response = "You must first retrieve this team's existing list of players";
         return false;
       }
@@ -52,8 +54,6 @@ namespace Domain {
     }
 
     public Manager Manager { get; private set; }
-    public UniformColors HomeColors { get; private set; }
-    public UniformColors AwayColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
       {
         if (Manager != null) {
@@ -64,9 +64,10 @@ namespace Domain {
         Manager = newManager;
       }
     }
+
+    public UniformColors HomeColors { get; private set; }
     public void SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
       HomeColors = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
-     
     }
     
   }
