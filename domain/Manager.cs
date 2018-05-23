@@ -7,11 +7,11 @@ namespace Domain {
       NameFactory = PersonFullName.Create (firstname, lastname);
       Id = Guid.NewGuid ();
     }
-    private Manager() { }
-    public Guid Id { get; set; }
+    //private Manager() { }
+    public Guid Id { get; private set; }
     public PersonFullName NameFactory { get; private set; }
     public string Name => NameFactory.FullName;
-    public int CurrentTeamId { get; set; }
+    public int CurrentTeamId { get; private set; }
     public List<ManagerTeamHistory> PastTeams { get; set; }
   }
 }
