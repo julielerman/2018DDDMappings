@@ -25,6 +25,7 @@ namespace SharedKernel {
 
     public string First { get; private set; }
     public string Last { get; private set; }
+    
     public string FullName  => First + " " + Last;
 
   }
