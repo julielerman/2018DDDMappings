@@ -7,7 +7,7 @@ namespace Domain {
       NameFactory = PersonFullName.Create (firstname, lastname);
       Id = Guid.NewGuid ();
     }
-    //private Manager() { }
+    private Manager() { } //needed because firatname & lastname are in another class
     public Guid Id { get; private set; }
     public PersonFullName NameFactory { get; private set; }
     public string Name => NameFactory.FullName;
