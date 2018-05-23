@@ -2769,11 +2769,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Demos/EF_DDD/data/data.csproj",
+      "projectUniqueName": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Techorama/EF_DDD/data/data.csproj",
       "projectName": "data",
-      "projectPath": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Demos/EF_DDD/data/data.csproj",
+      "projectPath": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Techorama/EF_DDD/data/data.csproj",
       "packagesPath": "/Users/julielerman/.nuget/packages/",
-      "outputPath": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Demos/EF_DDD/data/obj/",
+      "outputPath": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Techorama/EF_DDD/data/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -2790,8 +2790,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Demos/EF_DDD/domain/domain.csproj": {
-              "projectPath": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Demos/EF_DDD/domain/domain.csproj"
+            "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Techorama/EF_DDD/domain/domain.csproj": {
+              "projectPath": "/Users/julielerman/Dropbox/ConferenceStuff/2018 Spring ScotlandBelgiumSwitz/Techorama/EF_DDD/domain/domain.csproj"
             }
           }
         }
