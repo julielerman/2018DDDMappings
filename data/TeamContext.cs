@@ -62,8 +62,10 @@ namespace Data {
                         (e.State == EntityState.Added || e.State == EntityState.Modified)
                     )) {
                 entry.Property ("LastModified").CurrentValue = timestamp;
-                //PUT THE DARNED IF STATEMENTY IN HERE!!
-                entry.Property ("Created").CurrentValue = timestamp;
+                if (e.State==EntityState.Added){
+                  entry.Property ("Created").CurrentValue = timestamp;
+                }
+               
             }
             return base.SaveChanges ();
         }
