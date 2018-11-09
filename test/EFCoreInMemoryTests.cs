@@ -116,7 +116,7 @@ namespace test {
 
         }
 
-#if true
+
         [Fact]
         public void CanStoreAndRetrieveTeamManager () {
             var team = CreateTeamAjax ();
@@ -135,7 +135,7 @@ namespace test {
                 Assert.Equal (storedTeam.Id, storedManager.CurrentTeamId);
             }
         }
-#endif
+
 
     }
 }
