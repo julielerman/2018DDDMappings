@@ -11,6 +11,6 @@ public class Player
  private Player(){}
 
   public Guid Id { get; private set; }
-  private PersonFullName NameFactory { get; private set; }
+  private PersonFullName NameFactory;// { get; private set; }
   public string Name=>NameFactory.FullName;
 }
