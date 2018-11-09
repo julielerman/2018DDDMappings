@@ -9,7 +9,7 @@ namespace Domain {
     }
     private Manager() { } //needed because firatname & lastname are in another class
     public Guid Id { get; private set; }
-    private PersonFullName NameFactory ; //{ get; private set; }
+    public PersonFullName NameFactory { get; private set; }
     public string Name => NameFactory.FullName;
     public int CurrentTeamId { get; private set; }
     public List<ManagerTeamHistory> PastTeams { get; set; }
