@@ -4,15 +4,7 @@ using JimmyBogardRocks;
 namespace Domain {
   public class UniformColors : ValueObject<UniformColors> {
     public int Id { get; set; }
-    // public UniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
-    //   ShirtPrimary = shirt1;
-    //   ShortsSecondary = shirt2;
-    //   ShirtTertiary = shirt3;
-    //   ShortsPrimary = shorts1;
-    //   ShortsSecondary = shorts2;
-    //   Socks = socks;
-
-    // }
+    
      public UniformColors (Color shirtPrimary, Color shirtSecondary, Color shirtTertiary, Color shortsPrimary, Color shortsSecondary, Color socks) {
       ShirtPrimary = shirtPrimary;
       ShirtSecondary = shirtSecondary;
