@@ -21,6 +21,7 @@ namespace Domain {
     // team name can only be set
     // in constructor and never edited
     // uses backing field  _teamname
+    //because backing field is private, a mapping is needed
     
     //public string TeamName { get; private set; }
     private string _teamname;

@@ -22,9 +22,9 @@ namespace Data {
             modelBuilder.Ignore<PersonFullName> ();
            //
            
-            // modelBuilder.Entity<Team> ()
-            //     .Property (b => b.TeamName)
-            //     .HasField ("_teamname");
+            modelBuilder.Entity<Team> ()
+                .Property (b => b.TeamName)
+                .HasField ("_teamname");
 
         }
     }
