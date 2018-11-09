@@ -36,6 +36,9 @@ namespace Data {
 
             modelBuilder.Entity<UniformColors> ()
                 .Property (u => u.ShirtPrimary).HasConversion (c => c.Name, s => Color.FromName (s));
+           
+           
+           
             modelBuilder.Entity<UniformColors> ()
                 .Property (u => u.ShirtSecondary).HasConversion (c => c.Name, s => Color.FromName (s));
             modelBuilder.Entity<UniformColors> ()
