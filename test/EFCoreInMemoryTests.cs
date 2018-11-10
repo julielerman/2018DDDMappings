@@ -12,11 +12,15 @@ namespace test {
         private static Team CreateTeamAjax () {
             return new Team ("AFC Ajax", "The Lancers", "1900", "Amsterdam Arena");
         }
+         DbContextOptions<TeamContext> GetInMemoryContextOptions(string contextName)
+    {
+      return new DbContextOptionsBuilder<TeamContext>().UseInMemoryDatabase(contextName).Options;
+    }
 
         [Fact]
         public void CanStoreAndMaterializeImmutableTeamNameFromDataStore () {
             var team = CreateTeamAjax ();
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("immutableTeamName").Options;
+            var options = GetInMemoryContextOptions("immutableTeamName");
             using (var context = new TeamContext (options)) {
                 context.Teams.Add (team);
                 context.SaveChanges ();
@@ -28,31 +32,32 @@ namespace test {
         }
 
         [Fact]
-        public void CanStoreAndRetrievePlayerName () {
-            var team = CreateTeamAjax ();
-            team.AddPlayer ("André", "Onana", out string response);
+        public void CanStoreAndRetrievePlayerName ()
+    {
+      var team = CreateTeamAjax();
+      team.AddPlayer("André", "Onana", out string response);
+      var options=GetInMemoryContextOptions("playername");
+      using (var context = new TeamContext(options))
+      {
+        context.Teams.Add(team);
+        context.SaveChanges();
+      }
+      using (var context = new TeamContext(options))
+      {
+        var storedTeam = context.Teams.Include(t => t.Players).FirstOrDefault();
+        Assert.Single(storedTeam.Players);
+        Assert.Equal("André Onana", storedTeam.Players.First().Name);
+      }
+    }
 
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("playername").Options;
-            using (var context = new TeamContext (options)) {
-                context.Teams.Add (team);
-                context.SaveChanges ();
-            }
-            using (var context = new TeamContext (options)) {
-               
-                var storedTeam = context.Teams.Include (t => t.Players).FirstOrDefault ();
-              
-                Assert.Single (storedTeam.Players);
-                Assert.Equal ("André Onana", storedTeam.Players.First ().Name);
+   
 
-            }
-        }
-
-        [Fact]
+    [Fact]
         public void CanStoreAndRetrieveTeamPlayers () {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
 
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("storeretrieveplayer").Options;
+            var options = GetInMemoryContextOptions ("storeretrieveplayer");
             using (var context = new TeamContext (options)) {
                 context.Teams.Add (team);
                 context.SaveChanges ();
@@ -68,7 +73,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
 
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("preventplayeronteamwithplayersnotloaded").Options;
+            var options = GetInMemoryContextOptions ("preventplayeronteamwithplayersnotloaded");
             using (var context = new TeamContext (options)) {
                 context.Teams.Add (team);
                 context.SaveChanges ();
@@ -85,7 +90,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
 
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("allowplayeronteamwithplayersloaded").Options;
+            var options = GetInMemoryContextOptions("allowplayeronteamwithplayersloaded");
             using (var context = new TeamContext (options)) {
                 context.Teams.Add (team);
                 context.SaveChanges ();

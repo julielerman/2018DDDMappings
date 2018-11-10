@@ -2,9 +2,10 @@ using System;
 using System.Drawing;
 using System.Linq;
 using Domain;
+using SharedKernel;
 using Xunit;
 
-namespace test {
+namespace Test {
     public class DomainClassTests {
 
         private static Team CreateTeamAjax () {
@@ -61,6 +62,43 @@ namespace test {
             var team = CreateTeamAjax ();
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White);
             Assert.Equal (Color.White, team.HomeColors.ShirtPrimary);
+        }
+        [Fact]
+        public void CompareEqualValueObjectsWithEqualsReturnsTrue()
+        {
+            var pfnJulie= PersonFullName.Create("Julie","Lerman");
+            var pfnJulie2=PersonFullName.Create("Julie","Lerman");
+            Assert.Equal(pfnJulie,pfnJulie2);
+        }
+
+        [Fact]
+        public void CompareDifferentValueObjectsWithEqualsAreNotEqual()
+        {
+            var pfnJulie= PersonFullName.Create("Julie","Lerman");
+            var pfnKermit=PersonFullName.Create("Kermit","Thefrog");
+            Assert.NotEqual(pfnJulie,pfnKermit);
+        }
+        [Fact]
+        public void CompareNullValueObjectsWithEqualsAreNotEqual()
+        {
+            var pfnJulie= PersonFullName.Create("Julie","Lerman");
+            
+            Assert.False(pfnJulie.Equals(null));
+        }
+        [Fact]
+        public void CompareEqualValueObjectsWithSymbolReturnsTrue()
+        {
+            var pfnJulie= PersonFullName.Create("Julie","Lerman");
+            var pfnJulie2=PersonFullName.Create("Julie","Lerman");
+            Assert.True(pfnJulie==pfnJulie2);
+        }
+
+        [Fact]
+        public void CompareDifferentValueObjectsWithSymbolAreNotEqual()
+        {
+            var pfnJulie= PersonFullName.Create("Julie","Lerman");
+            var pfnKermit=PersonFullName.Create("Kermit","Thefrog");
+            Assert.False(pfnJulie==pfnKermit);
         }
     }
 }
