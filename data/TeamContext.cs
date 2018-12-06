@@ -35,7 +35,8 @@ namespace Data {
                 .HasForeignKey (typeof (Manager), "CurrentTeamId");
 
             modelBuilder.Entity<UniformColors> ()
-                .Property (u => u.ShirtPrimary).HasConversion (c => c.Name, s => Color.FromName (s));
+                .Property (u => u.ShirtPrimary)
+                .HasConversion(c => c.Name, s => Color.FromName (s));
            
            
            
