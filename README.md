@@ -1,4 +1,8 @@
 # 2018DDDMappings
-Demos and slides from May 2018 Mapping DDD Domains with EF Core 2.1
+Demos and slides from  2018 sessions on Mapping DDD Domains with EF Core 
+It has evolved over the year to keep up with the different versions of EF Core 2.x.
 
-In my presentation I opened a number of branches each implementing the next mapping I discussed. The final branch was for shadow properties but it contains all of the previous mappings, code and tests. That's what this repository contains along with a PDF of the slides. The last slide has a number of links to learn more. 
+Dec 2018: Updated to EF Core 2.1 and .NET Core App 2.2
+
+Each branch represents a different demo I eitehr showed or discussed in the presentation.
+The PDF is a copy of the latest version of the slides.
