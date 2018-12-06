@@ -46,7 +46,7 @@ namespace Test {
     [Fact]
     public void CanReturnReverseFullName () {
       var pfnJulie = PersonFullName.Create ("Julie", "Lerman");
-      Assert.Equal (pfnJulie.FullNameReverse, "Lerman, Julie");
+      Assert.Equal ( "Lerman, Julie",pfnJulie.FullNameReverse);
     }
   }
 }
